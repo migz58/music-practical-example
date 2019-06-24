@@ -1,0 +1,1 @@
+export var APP_CONFIG_API_URL: String = "https://cors-anywhere.herokuapp.com/https://api.deezer.com";

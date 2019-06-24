@@ -1,0 +1,15 @@
+.margins-vertical-5{
+    margin: 5% 0%;
+}
+
+.custom-card,
+.custom-card-artists{
+    cursor: pointer;
+    box-shadow: 5px 10px 8px #332c2c;
+    border-radius: 15px;
+    border: 1px solid rgb(63, 63, 63);
+}
+.custom-card:hover,
+.custom-card-artists:hover{
+    border: 2px solid grey;
+}

@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Logo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form (ngSubmit)="onSearch()" [formGroup]="searchForm" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" formControlName="artistName"
+                id="artistName" required>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                [disabled]="searchForm.invalid">Search</button>
+        </form>
+    </div>
+</nav>
+
+<br><br>
+<div class="container">
+    <div class="row" *ngFor="let artists of artistsResults; let i = index;">
+        <div class="col" *ngFor="let artist of artists.data">
+            <div class="card custom-card" style="width: 18rem;" (click)="onSelect()">
+                <img src="{{artist.picture_medium}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{artist.name}}</h5>
+                </div>
+            </div>
+            <br>
+        </div>
+        <br>
+    </div>
+</div>
