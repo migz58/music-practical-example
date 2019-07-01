@@ -17,16 +17,30 @@
 
 <br><br>
 <div class="container">
-    <div class="row" *ngFor="let artists of artistsResults; let i = index;">
-        <div class="col" *ngFor="let artist of artists.data">
-            <div class="card custom-card" style="width: 18rem;" (click)="onSelect()">
-                <img src="{{artist.picture_medium}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{artist.name}}</h5>
+    <div *ngIf="noSearch === true">
+        <div class="row">
+            <div class="col">
+                <div class="card text-center box-shw">
+                    <h6>Please search for an artist</h6>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="noSearch === false">
+        <h4 class="search-heading">Displaying results for "{{searchName}}"</h4>
+
+        <div class="row" *ngFor="let artists of artistsResults; let i = index;">
+            <div class="col-3" *ngFor="let artist of artists.data">
+                <div class="card custom-card" routerLink="/artists/{{artist.id}}">
+                    <img src="{{artist.picture_medium}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{artist.name}}</h5>
+                    </div>
+                </div>
+                <br>
             </div>
             <br>
         </div>
-        <br>
     </div>
 </div>

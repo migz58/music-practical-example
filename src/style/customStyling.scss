@@ -1,15 +1,27 @@
 .margins-vertical-5{
     margin: 5% 0%;
 }
-
+.box-shw{
+    box-shadow: 5px 10px 8px #332c2c;
+}
+.search-heading{
+    color: white;
+    text-decoration: underline;
+}
 .custom-card,
 .custom-card-artists{
     cursor: pointer;
     box-shadow: 5px 10px 8px #332c2c;
-    border-radius: 15px;
     border: 1px solid rgb(63, 63, 63);
+    margin: auto;
 }
-.custom-card:hover,
-.custom-card-artists:hover{
-    border: 2px solid grey;
+.custom-card:hover{
+    border: 2px solid rgb(51, 43, 43);
+}
+
+//Artist Details
+.card-title-custom,
+.card-text-custom{
+    color: white;
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
 }

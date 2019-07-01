@@ -11,7 +11,8 @@ export class MusicdbappService {
     url: String;
     headers: any;
 
-    private readonly LOOK_UP_ARTISTS = 'LOOK_UP_DATA';
+    private readonly LOOK_UP_ARTISTS = 'LOOK_UP_ARTISTS';
+    private readonly LOOK_UP_ARTIST_TRACKS = 'LOOK_UP_ARTIST_TRACKS';
 
     constructor(private http: HttpClient) {
         this.url = APP_CONFIG_API_URL;
@@ -26,16 +27,28 @@ export class MusicdbappService {
     getArtists(searchForm: SearchRequest) {
         return new Promise((resolve, reject) => {
             var json = searchForm;
-            //var params = json;
-            var params = "sum";
-            this.http.get(this.url + '/search/artist/?q=' +params+'&index=0&limit=6')
+            var params = json;
+            this.http.get(this.url + '/search/artist/?q=' + params + '&index=0&limit=8')
                 .subscribe((data) => {
-                    localStorage.setItem(this.LOOK_UP_ARTISTS,
-                        JSON.stringify(data));
+                    localStorage.setItem(this.LOOK_UP_ARTISTS, JSON.stringify(data));
                     resolve(data);
                 },
                     error => {
-                        console.log("/lookup call service failed");
+                        console.log("/lookup call service for artist failed");
+                        reject(error);
+                    })
+        })
+    }
+
+    getArtist(id: number) {
+        return new Promise((resolve, reject) => {
+            this.http.get(this.url + '/artist/' + id + '/top?limit=6')
+                .subscribe((data) => {
+                    localStorage.setItem(this.LOOK_UP_ARTIST_TRACKS, JSON.stringify(data));
+                    resolve(data);
+                },
+                    error => {
+                        console.log("/lookup call service for artist tracks failed");
                         reject(error);
                     })
         })

@@ -14,42 +14,43 @@ export class HomeComponent implements OnInit {
     searchForm: FormGroup;
     artistName: FormControl;
     failed: boolean;
+    noSearch: boolean;
     artistsResults: any[];
 
+    searchName: String;
 
-    constructor(public musicDbService: MusicdbappService, private router: Router
-    ) { }
+
+    constructor(public musicDbService: MusicdbappService, private router: Router) { }
 
     ngOnInit() {
         this.createSearchForm();
-        this.onSearch();
+        this.noSearch = true;
     }
 
-    createSearchForm(){
+    createSearchForm() {
         this.searchForm = new FormGroup({
             artistName: this.artistName = new FormControl('', [Validators.required])
         })
     }
 
-    onSearch(){
+    onSearch() {
         this.failed = false;
-        this.artistsResults= [];
+        this.artistsResults = [];
 
         let searchRequest = this.artistName.value;
         console.log(searchRequest);
+        this.searchName = searchRequest;
 
         this.musicDbService.getArtists(searchRequest)
-        .then((data) => {
-            this.artistsResults.push(data);
-        })
-        .catch(()=>{
-            console.log("Lookup component failed");
-        })
+            .then((data) => {
+                this.noSearch = false;
+                this.artistsResults.push(data);
+            })
+            .catch(() => {
+                console.log("Lookup component failed");
+                this.noSearch = true;
+            })
 
         console.log(this.artistsResults);
-    }
-
-    onSelect(){
-        this.router.navigate(['/artists']);
     }
 }
