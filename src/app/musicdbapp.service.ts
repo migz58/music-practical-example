@@ -42,7 +42,7 @@ export class MusicdbappService {
 
     getArtist(id: number) {
         return new Promise((resolve, reject) => {
-            this.http.get(this.url + '/artist/' + id + '/top?limit=6')
+            this.http.get(this.url + '/artist/' + id + '/top?limit=8')
                 .subscribe((data) => {
                     localStorage.setItem(this.LOOK_UP_ARTIST_TRACKS, JSON.stringify(data));
                     resolve(data);

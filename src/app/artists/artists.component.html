@@ -19,8 +19,8 @@
                         <h5 class="card-title">Top Tracks</h5>
                         <ul class="list-group list-group-flush" *ngFor="let artist of artistResults; let i = index;">
                             <li class="list-group-item" *ngFor="let artistTracks of artist.data">
-                                {{artistTracks.title}} : <span
-                                    class="float-right">{{artistTracks.duration / 60 | number : '1.2-2'}}</span>
+                                {{artistTracks.title}} 
+                                <span class="float-right">{{artistTracks.duration / 60 | number : '1.2-2'}}</span>
                             </li>
                         </ul>
                     </div>
